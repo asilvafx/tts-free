@@ -1,0 +1,238 @@
+/* Base styles */
+:root {
+  --primary-color: #0066cc;
+  --primary-hover: #0052a3;
+  --success-color: #28a745;
+  --success-hover: #218838;
+  --danger-color: #dc3545;
+  --danger-hover: #c82333;
+  --gray-100: #f5f5f5;
+  --gray-200: #ddd;
+  --gray-300: #ccc;
+  --gray-600: #666;
+  --gray-800: #333;
+  --border-radius: 8px;
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+}
+
+/* Reset and base styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--gray-100);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+}
+
+#root {
+  width: 100%;
+  padding: var(--spacing-sm);
+  margin: 0 auto;
+}
+
+/* Container */
+.container {
+  background: white;
+  padding: var(--spacing-lg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Typography */
+h1 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: var(--spacing-sm);
+  color: var(--gray-800);
+}
+
+.hint {
+  color: var(--gray-600);
+  font-style: italic;
+  margin-bottom: var(--spacing-sm);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+/* Form elements */
+textarea {
+  width: 100%;
+  min-height: clamp(100px, 30vh, 200px);
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm);
+  border: 1px solid var(--gray-200);
+  border-radius: calc(var(--border-radius) / 2);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  font-family: inherit;
+  resize: vertical;
+}
+
+/* Voice selector */
+.voice-selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .voice-selector {
+    flex-direction: row;
+  }
+}
+
+.select-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  flex: 1;
+}
+
+.select-group label {
+  font-weight: 500;
+  color: var(--gray-800);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+select {
+  width: 100%;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--gray-200);
+  border-radius: calc(var(--border-radius) / 2);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  background-color: white;
+}
+
+select:disabled {
+  background-color: var(--gray-100);
+  cursor: not-allowed;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+button {
+  flex: 1;
+  min-width: 120px;
+  padding: var(--spacing-sm);
+  border: none;
+  border-radius: calc(var(--border-radius) / 2);
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+@media (min-width: 768px) {
+  button {
+    flex: 0 1 auto;
+  }
+}
+
+button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+button:disabled {
+  background: var(--gray-300) !important;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.speak-btn {
+  background: var(--primary-color);
+}
+
+.speak-btn:not(:disabled):hover {
+  background: var(--primary-hover);
+}
+
+.stop-btn {
+  background: var(--danger-color);
+}
+
+.stop-btn:hover {
+  background: var(--danger-hover);
+}
+
+.download-btn {
+  background: var(--success-color);
+}
+
+.download-btn:not(:disabled):hover {
+  background: var(--success-hover);
+}
+
+/* Error message styles */
+.error-message {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+  border: 1px solid #ffeeba;
+  border-radius: calc(var(--border-radius) / 2);
+  font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+/* Accessibility improvements */
+button, select, textarea {
+  font-family: inherit;
+}
+
+textarea:focus,
+select:focus,
+button:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Responsive padding adjustments */
+@media (max-width: 480px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+  
+  button {
+    width: 100%;
+  }
+}
+
+/* Medium devices */
+@media (min-width: 768px) {
+  #root {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* Larger devices */
+@media (min-width: 1024px) {
+  .container {
+    padding: var(--spacing-lg);
+  }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+  button {
+    padding: calc(var(--spacing-sm) + 2px) var(--spacing-sm);
+  }
+  
+  select {
+    padding: calc(var(--spacing-xs) + 2px) var(--spacing-sm);
+  }
+}
